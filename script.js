@@ -1,4 +1,3 @@
-// Varíaveis que vamos utilizar ao longo do código
 const html = document.querySelector('html');
 const displayTempo  =   document.querySelector('#timer');
 const banner = document.querySelector('.app__image');
@@ -94,6 +93,11 @@ const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos <= 0){
         audioTempoFinalizado.play();
         alert('Tempo finalizado!');
+        const focoAtivo = html.getAttribute('data-contexto') === 'foco';
+        if (focoAtivo){
+            const evento = new CustomEvent ('FocoFinalizado');
+            document.dispatchEvent(evento);
+        }
         zerar();
         return;
     }
